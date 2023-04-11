@@ -15,6 +15,32 @@
         <input type="submit" value="Genera password">
     </form>
 
-    
 </body>
 </html>
+
+
+    <?php
+
+    // verifica di invio del form
+    if (isset($_GET['password-length'])) {
+        $passwordLength = $_GET['password-length'];
+        $password = generateRandomPassword($passwordLength);
+        echo "<p>La password generata è: $password</p>";
+    }
+
+    ?>
+
+    <?php
+
+    // Funzione 
+    function generateRandomPassword($length) {
+    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-=_+[]{}|;:,.<>?';
+    $password = '';
+    $charactersLength = strlen($characters);
+    for ($i = 0; $i < $length; $i++) {
+        $password .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $password;
+    }
+
+    ?>
